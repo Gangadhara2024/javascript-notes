@@ -1,9 +1,10 @@
-/**     VARIABLES.
+/**                                             VARIABLES.
  *  Variables are used to store data.
  *  JavaScript provides three keywords to declare variables: (var, let, and const)
  */
 // 111. LET
 
+/*
 // console.log(x);  // Cannot access 'x' before initialization.
 
 // let x = 10;
@@ -39,9 +40,10 @@
 
 // console.log(2 == '2'); // compares only values but doesnot care about datatypes.
 // console.log(4 === '4'); // it does strict comparision. values are same but datatypes are not same.
+*/
+//                                     ##### FUNCTIONS.
 
-//   ##### FUNCTIONS.
-
+/*
 //  1. Regular Functions:
 
 // function add(a, b) {
@@ -83,8 +85,10 @@
 //     // This code is executed immediately
 //     console.log("This function is immediately invoked.");
 // })();
+*/
 
-//       #### ARRAY METHODS.
+/*
+//                                         #### ARRAY METHODS.
 
 // 1. push(): Adds one or more elements to the end of an array and returns the new length of the array.
 // let arr = [1, 2, 3];
@@ -144,3 +148,162 @@
 // // Add elements starting from index 3, without removing any elements
 // arr.splice(3, 0, 8, 9);  // 1st index(1)  always removes element.
 // console.log(arr); // Output: [1, 6, 7, 8, 9, 5]
+*/
+
+/*
+//                                              #### SPREAD OPERATOR
+// Spread in Arrays:
+
+// const originalArray = [1, 2, 3];
+// const copyArray = [...originalArray];
+// console.log(copyArray); // [1, 2, 3]
+
+// Spread in Objects:
+
+// const originalObject = { a: 1, b: 2 };
+// const copyObject = { ...originalObject };
+// console.log(copyObject); // { a: 1, b: 2 }
+
+// The spread operator can be used to pass elements of an array as arguments to a function.
+
+// const numbers = [1, 2, 3];
+// const sum = (x, y, z) => x + y + z;
+// console.log(sum(...numbers)); // 6
+
+//  Spread with Strings:
+
+// const str = 'hello';
+// const charArray = [...str];
+// console.log(charArray); // ['h', 'e', 'l', 'l', 'o']
+*/
+
+//                              #### CALLBACKS
+/*
+//   callback is a function that is passed as an argument to another function and is executed after the completion of that function
+
+// function greet(name, callback) {
+//   console.log("Hello " + name);
+//   callback();
+// }
+
+// function sayGoodbye() {
+//   console.log("Goodbye!");
+// }
+
+// greet("Alice", sayGoodbye);
+
+// The greet function takes two arguments: a string name and a function callback.
+// After printing the greeting message, greet calls the callback function.
+// When greet('Alice', sayGoodbye) is called, it prints "Hello Alice" and then calls sayGoodbye, which prints "Goodbye!".
+
+// function fetchData(callback) {
+//   console.log("Fetching data...");
+//   setTimeout(function () {
+//     console.log("Data fetched");
+//     callback();
+//   }, 2000);
+// }
+
+// function processData() {
+//   console.log("Processing data...");
+// }
+
+// fetchData(processData);
+
+// here processData is callback passed to fetchdata. when callback() fn is called then processData
+// function is called and prints data.
+
+// @@@@  callbacks with promises.
+
+// function fetchData() {
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => {
+//         const data = 'Some data';
+//         resolve(data);
+//       }, 1000);
+//     });
+//   }
+  
+//   fetchData()
+//     .then(data => {
+//       console.log('Data:', data);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+  */
+
+//                           ####  ARRAY METHODS OF HOF:
+
+// **** FOREACH: forEach is a method that allows you to execute a provided function once for each array element.
+
+// const numbers = [1, 2, 3, 4, 5];
+
+// numbers.forEach(function(number, index, array) {
+//   console.log(number, index, array);
+// });
+
+// const numbers = [1, 2, 3, 4, 5];
+
+// numbers.forEach((number, index) => {
+//   console.log('Index:', index, 'Value:', number);
+// });
+
+// The forEach method does not return a value; it always returns undefined.
+
+// **** MAP:  It creates a new array with the results of calling a provided function on every element in the original array.
+
+// const numbers = [1, 2, 3, 4, 5];
+// const doubled = numbers.map(function(number) {
+//   return number * 2;
+// });
+
+// console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
+// const numbers = [1, 2, 3, 4, 5];
+// const doubled = numbers.map(number => number * 2);
+
+// console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
+// map is also useful when working with arrays of objects:
+// const users = [
+//   { firstName: "John", lastName: "Doe" },
+//   { firstName: "Jane", lastName: "Smith" },
+//   { firstName: "Sam", lastName: "Green" },
+// ];
+
+// const fullNames = users.map((user) => `${user.firstName} ${user.lastName}`);
+
+// console.log(fullNames); // Output: ["John Doe", "Jane Smith", "Sam Green"]
+
+// **** FILTER:  it filter the data.
+
+// const numbers = [1, 2, 3, 4, 5, 6];
+// const evenNumbers = numbers.filter(num => num % 2 === 0);
+// console.log(evenNumbers); // Output: [2, 4, 6]
+
+// const people = [
+//   { name: "Alice", age: 25 },
+//   { name: "Bob", age: 30 },
+//   { name: "Charlie", age: 35 },
+// ];
+
+// const peopleUnder30 = people.filter((person) => person.age < 30);
+// console.log(peopleUnder30);
+// // Output: [{ name: 'Alice', age: 25 }]
+
+// **** REDUCE: the reduce method is used to reduce the elements of an array to a single value.
+// array.reduce(callback(accumulator, currentValue, currentIndex, array), initialValue);
+
+// const numbers = [1, 2, 3, 4, 5];
+// const sum = numbers.reduce(
+//   (accumulator, currentValue) => accumulator + currentValue, 2
+  
+// ); // 2 is intialvalue.
+// console.log(sum);
+
+// here accumlator = 2(intialvalue) , currentvalue = 1 ==>  2 + 1 = 3,
+// here accumlator = 3(intialvalue) , currentvalue = 2 ==>  3 + 2 = 5,
+// here accumlator = 5(intialvalue) , currentvalue = 3 ==>  5 + 3 = 8,
+// here accumlator = 8(intialvalue) , currentvalue = 4 ==>  8 + 4 = 12,
+// here accumlator = 12(intialvalue) , currentvalue = 5 ==>  12 + 5 = 17,
