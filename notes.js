@@ -144,4 +144,3 @@
 // // Add elements starting from index 3, without removing any elements
 // arr.splice(3, 0, 8, 9);  // 1st index(1)  always removes element.
 // console.log(arr); // Output: [1, 6, 7, 8, 9, 5]
-
