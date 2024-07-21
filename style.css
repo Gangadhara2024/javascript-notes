@@ -1,0 +1,14 @@
+*{
+  background-color: black;
+}
+.aqua {
+  background-color: rgb(178, 114, 114);
+  height: 1000px;
+  width: 400px;
+  /* overflow-y: scroll; */
+}
+.lime {
+  background-color: rgb(87, 87, 143);
+  height: 100px;
+  width: 100px;
+}
