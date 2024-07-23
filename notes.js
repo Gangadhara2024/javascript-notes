@@ -9,11 +9,15 @@
 // var city; // Undefined
 // var id = Symbol("id"); // Symbol
 
+// primitive datatypes are stored in stack memeory and not growable in size.
+
 //  NON-PRIMITIVE (Reference) Types: These are more complex types that are made up of multiple values and are mutable (can be changed).
 
 // 1. objects.
 // 2. Array.
 // 3. Function.
+
+// Non-primitive datatypes are stored in heap memeory and growable in size.
 
 /**                                             VARIABLES.
  *  Variables are used to store data.
@@ -28,7 +32,7 @@
  *   ==> it figure out variables and these variables will be allocated some data.
  *   ==> process of allocation of data to variables after scanning is called as HOISTING.
  *   ==> variables which are declared with let, const, var will be initialises with 'undefined.
- *   ==> variables which are declared with let, const are kept in TEMPORAL DEAD ZONE.
+ *   ==> variables which are declared with let, const are kept in TEMPORAL DEAD ZONE (TDZ).
  *   ==> variables which are declared with 'function' keyword gets actual value(fully hoisted).
  *
  * 2. EXCUTION PHASE.
@@ -41,7 +45,7 @@
 // a = 11;
 // console.log(a);
 
-// ==> we can access 'a' before initialisation.
+// ==> we can't access 'a' before initialisation.
 // console.log(a);
 // let a = 22;
 
@@ -54,7 +58,7 @@
 // b = 55;
 // console.log(b);
 
-// 2 ==> we can access 'b' before initialisation.
+// 2 ==> we can't access 'b' before initialisation.
 // console.log(b);
 // const b = 22;
 
@@ -98,10 +102,18 @@
 
 //  4.HIGHER ORDER FUNCTIONS.
 
-// Higher-order functions are functions that can take other functions as arguments or return function as their results
+// Higher-order functions are functions that takes or returns another function.
+// function callme() {
+//   let fn = function () {
+//     console.log("inside fn");
+//   };
+//   return fn;
+// }
+// const result = callme();
+// result();
+// here callme() is HIGHER ORDER FUNCTION, because it returns fn function.
 
 // let numbers = [1, 2, 3, 4, 5];
-
 // function double(x) {
 //   return x + 1;
 // }
@@ -124,7 +136,45 @@
 // console.log(arr);
 // console.log(arr[1] + arr[2]);
 
- 
+// let arr = [1, 3, 5, 7];
+// for (let i in arr) {
+//   console.log(i);
+// }
+// for in loop gives keys of array.
+
+// for (let j of arr) {
+//   console.log(j);
+// }
+// for of loop gives values of array.
+
+//           #### OBJECTS IN JS
+// let obj1 = {
+//   name: "gangadhar",
+//   age: 26,
+// };
+// console.log(obj1.name);
+// console.log(obj1["age"]);
+
+// let obj1 = {
+//   name: "gangadhar",
+//   age: 26,
+// };
+// let entries = Object.entries(obj1);
+// console.log(entries);
+// Object.entries converts object into Array of Arrays(into individual arrays).
+
+// let obj = {
+//   name: "hello",
+//   city: "chennai",
+//   address: "tamil nadu",
+// };
+// for (let i in obj) {
+//   console.log(i);
+// }
+// for (let j of obj) {
+//   console.log(j);
+// }
+
 //                                         #### ARRAY METHODS.
 
 // 1. push(): Adds one or more elements to the end of an array and returns the new length of the array.
@@ -174,7 +224,7 @@
 
 // let arr = [1, 2, 3, 4, 5];
 
-// // Remove elements starting from index 2, remove 2 elements
+// Remove elements starting from index 2, remove 2 elements
 // arr.splice(2, 2);
 // console.log(arr); // Output: [1, 2, 5]
 
@@ -185,7 +235,6 @@
 // // Add elements starting from index 3, without removing any elements
 // arr.splice(3, 0, 8, 9);  // 1st index(1)  always removes element.
 // console.log(arr); // Output: [1, 6, 7, 8, 9, 5]
-
 
 /*
 //                                              #### SPREAD OPERATOR
@@ -200,12 +249,6 @@
 // const originalObject = { a: 1, b: 2 };
 // const copyObject = { ...originalObject };
 // console.log(copyObject); // { a: 1, b: 2 }
-
-// The spread operator can be used to pass elements of an array as arguments to a function.
-
-// const numbers = [1, 2, 3];
-// const sum = (x, y, z) => x + y + z;
-// console.log(sum(...numbers)); // 6
 
 //  Spread with Strings:
 
@@ -259,9 +302,24 @@
 // outerFunction();
 */
 //                              #### CALLBACKS
-/*
-// callback is a function that is passed as an argument to another function and is executed after the completion of that function.
-//   
+
+// callback ==> whenever a function is passed as an argument to another function, then that argument is called as CALLBACK function.
+// function callme(a) {
+//   console.log(a);
+// }
+// callme(true);
+// callme("hello");
+// callme(function () {});
+// here function () {} is callback function.
+
+// function callme(a) {
+//   console.log(a);
+//   a();
+// }
+// callme(function () {
+//   console.log("inside callback");
+// });
+// here a is function and is called as callback function, when we invoke a(); then inside a function callback is executed.
 
 // function greet(name, callback) {
 //   console.log("Hello " + name);
@@ -305,7 +363,7 @@
 //       }, 1000);
 //     });
 //   }
-  
+
 //   fetchData()
 //     .then(data => {
 //       console.log('Data:', data);
@@ -313,7 +371,6 @@
 //     .catch(error => {
 //       console.error('Error:', error);
 //     });
-  */
 
 //                           ####  ARRAY METHODS OF HOF:
 
@@ -323,20 +380,19 @@
 // forEach is used to iterate over the numbers array and print each element along with its index.
 
 // const numbers = [1, 2, 3, 4, 5];
-
 // numbers.forEach(function(number, index, array) {
 //   console.log(number, index, array);
 // });
 
 // const numbers = [1, 2, 3, 4, 5];
-
-// numbers.forEach((number, index) => {
-//   console.log('Index:', index, 'Value:', number);
+// let res = numbers.forEach((number, index) => {
+//   console.log("Index:", index, "Value:", number);
 // });
+// console.log(res);
 
 // **** MAP:
 // It creates a new array with the results of calling a provided function on every element in the original array.
-// Return Value: map returns a new array with the transformed elements.
+// Return Value: map returns a new array with the updated elements.
 
 // const numbers = [1, 2, 3, 4, 5];
 // const doubled = numbers.map(function(number) {
@@ -358,10 +414,9 @@
 // ];
 
 // const fullNames = users.map((user) => `${user.firstName} ${user.lastName}`);
-
 // console.log(fullNames); // Output: ["John Doe", "Jane Smith", "Sam Green"]
 
-// **** FILTER:  it filter the data.
+// **** FILTER:  it filter the data and return an empty array.
 
 // const numbers = [1, 2, 3, 4, 5, 6];
 // const evenNumbers = numbers.filter(num => num % 2 === 0);
@@ -392,6 +447,73 @@
 // here accumlator = 5(intialvalue) , currentvalue = 3 ==>  5 + 3 = 8,
 // here accumlator = 8(intialvalue) , currentvalue = 4 ==>  8 + 4 = 12,
 // here accumlator = 12(intialvalue) , currentvalue = 5 ==>  12 + 5 = 17,
+
+// const numbers = [4, 5, 3];
+// const sum = numbers.reduce((prev, ele, idx) => {
+//   console.log(prev, ele, idx);
+//   return prev + ele + idx;
+// }, 2);
+// console.log(sum);
+// prev = 2, ele = 4, idx = 0 ==> 2+4+0 => 6
+// prev = 6, ele = 5, idx = 1 ==> 6+5+1 => 12
+// prev = 12, ele = 3, idx = 2 ==> 12+3+2 => 17 , sum => 17 as output.
+
+// const number = [4, 5, 3];
+// const sums = number.reduce((prev, ele, idx) => {
+//   console.log(prev, ele, idx);
+//   return prev + ele + idx;
+// });
+// console.log(sums);
+// If we do not pass initial value i.e(2) it assumes it initial value as 1st element of array.
+// it will do iteration for n-1 times, that is array length - 1, 2 times.
+// prev = 4, ele = 5, idx = 1 ==> 4+5+1 => 10
+// prev = 10, ele = 3, idx = 2 ==> 10+3+2 => 15 , sum => 15 as output.
+
+//           #### STRINGS IN JS
+// STRINGS in js are immutable(not changable).
+// `str` ==> is called as TEMPLATE STRINGS(in back ticks).
+
+// const arr = [3, 4, 2, 6];
+// const str = "gangadhar";
+
+// // console.log(arr.length, str.length);
+// // console.log(arr[2], str[4]);
+// // let segment = arr.slice(1, 3);
+// // let segment1 = str.slice(2, 5);
+// // console.log(segment, segment1);
+// // we can use slice method in arrays and strings.
+// console.log(str.charAt(2)); // charAt method gives character at 2nd index.
+
+// const str = " ab  cd  ";
+// let trimmed = str.trim();  // Trim will remove space at start and end of string.
+// let strimmed = str.trimStart(); // Trimstart will remove space at start of string.
+// let etrimmed = str.trimEnd(); // Trimend will remove space at end of string.
+// console.log({ ans: etrimmed });
+
+// let str = "2,4,4,32,2";
+// let res = str.split(",");
+// console.log(res);
+
+// let str = "a@A#hDG";
+// console.log(str.charCodeAt(6)); // charCodeAt gives ASCII CODE OF index(2) which is 'A'.
+
+// let res = String.fromCharCode(65); // fromCharCode gives reverse of charcodeAt.
+// console.log(res);
+
+// let str = "hello world";
+// let res = str.replace("world", "india"); // world is replaced with india.
+// console.log(res);
+
+//            #### REGULAR EXPRESSIONS
+
+let str = "hello world heLLo";
+let regexp = /llo/g;
+let res = str.replace(regexp, "XXX");
+console.log(res);
+// Initially REGULAR EXPRESSIONS are case sensitive(small letters).
+// regexp will change string "llo" to "xxx".
+// 'g' is global, which looks for all "llo" in whole string.
+// 'i' is flag, which looks for capital in whole string.
 
 //                     #### DESTRUCTURING.
 /*
@@ -462,6 +584,7 @@
 // res.greet2();
 // we can get person class from animal using extends
 
+//  ADVANCES JS
 //             #### PROMISES
 
 // Promises ==> in JavaScript provide a way to handle asynchronous operations.
