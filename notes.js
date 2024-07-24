@@ -69,6 +69,51 @@
 // console.log(c);
 // var c = 22;
 
+//        #### PRE & POST INCREMENTS
+// post increment and decrement:
+
+// let a = 10;
+// let res1 = a++;
+// console.log(res1);
+// console.log(a);
+// Here, the value of a is first assigned to res1, so res1 gets the value 10.
+// After the assignment, a is incremented by 1, so a becomes 11.
+
+// let b = 10;
+// let res2 = b--;
+// console.log(res2);
+// console.log(b);
+// Here, the value of b is first assigned to res2, so res2 gets the value 10.
+// After the assignment, b is decremented by 1, so b becomes 9.
+
+// pre increment and decrement:
+
+// let a = 10;
+// let res1 = ++a;
+// console.log(res1);
+// console.log(a);
+// Here, the value of a is first incremented by 1, so a becomes 11.
+// The new value of a (11) is then assigned to res1.
+
+// let b = 10;
+// let res2 = --b;
+// console.log(res2);
+// console.log(b);
+// Here, the value of b is first decremented by 1, so b becomes 9.
+// The new value of b (9) is then assigned to res2.
+
+// let a = 5;
+// let b = a++;
+// console.log(a); // 6
+// console.log(b); // 5
+// After b is assigned, a is incremented by 1, so a becomes 6.
+
+// let a = 5;
+// let b = ++a; // Pre-increment
+// console.log(a); // 6
+// console.log(b); // 6
+// a is incremented to 6 before b is assigned, so both a and b end up with the value 6.
+
 //                                     ##### FUNCTIONS.
 
 //  1. REGULAR / NAMED Functions:
@@ -506,14 +551,87 @@
 
 //            #### REGULAR EXPRESSIONS
 
-let str = "hello world heLLo";
-let regexp = /llo/g;
-let res = str.replace(regexp, "XXX");
-console.log(res);
+// let str = "hello world heLLo";
+// let regexp = /llo/gi;
+// let res = str.replace(regexp, "XXX");
+// console.log(res);
 // Initially REGULAR EXPRESSIONS are case sensitive(small letters).
 // regexp will change string "llo" to "xxx".
 // 'g' is global, which looks for all "llo" in whole string.
 // 'i' is flag, which looks for capital in whole string.
+
+//                 #### EXCUTION FLOW OF JS
+
+// Global line ==> If line of code present ouside the function is called as Global line.
+// Local line ==> If line of code present inside function(inside braces{}) it is called as Local line.
+// IMPORTANT NOTE: If code present inside else condition{} braces, is not a local line, because code is not inside function () braces,
+// it is inside else block, so it is global line.
+
+// let a = 20; // global line
+// function callme(x, y) { // global line
+//   let a = 10; // local line
+//   console.log(x + y + a); // local line
+// }
+// callme(a, 2 * a); // global line
+
+// SCOPE ==> scope of variable means where that variable can be accessed.
+// every variable in js can be accessed with in it's own block or children block.
+
+// let a = 20; // a is accessable every where in code.
+// let f = () => {
+//   let a = 23;
+//   let f1 = () => {
+//     console.log(a);
+//   };
+//   return f1;
+// };
+// let res = f();
+// res();
+
+// let a = 20;
+// let b = 100;
+// let f = function (a, b) {
+//   console.log(a + b); // 22 + 24 => 46
+//   let f1 = () => {
+//     let b = 30;
+//     console.log(a + b);
+//   };
+//   return [a - b, f1]; // [-2, f1]
+// };
+// let result = f(a + 2, a + 4); // here what f1 return [-2, f1], it will get printed.
+// console.log(result); // [-2, f1]
+// result[1](); // result[f1] => that is f1 function.
+
+//      BLOCK
+// BLOCK {} ==> does't include functions.
+/**
+ * let,const declared variables are Block scoped.
+ * If variable is declared inside block with let/const keywords then that variables can be accessable with in thatblock only.
+ */
+
+// if (true) {
+//   var a = 20;
+//   console.log(a);
+// }
+// console.log(a);
+
+// here a is not defined in outside block, because let and const decalred variables are block scoped.
+// same occur for const, because let and const decalred variables are block scoped.
+
+// console.log(a); // undefined
+// if (true) {
+//   var a = 20;
+//   let b = 30;
+//   console.log(a + b); // 50
+// }
+// console.log(a); //20
+// console.log(b); // b is not defined
+
+// var and function decleartion are not block scoped, but they are context scoped.
+/**
+ *  Here block scoped means present inside block in whole container in callstack.
+ *  where as context scope means in container.
+ *  */
 
 //                     #### DESTRUCTURING.
 /*
@@ -538,6 +656,84 @@ console.log(res);
 // const { name, age } = person;
 // console.log(name, age); // Alice, 25
 */
+
+//                #### THIS KEYWORD
+/**
+ * This keyword in global points to global object.
+ * In browsers the global object is Window.
+ */
+// window.prompt("something");
+// window.alert("something");
+// window.console.log("something");
+
+// console.log(this === window); // here this and window is same.
+// variables which are declared with var,function keywords in global are part of window object.
+
+// let aaa = 100;
+// var aa = 20;
+// function aaaa() {
+//   console.log("object");
+// }
+// aaaa();
+// window.aaaa();
+// this.aaaa();
+
+// when This keyword is used inside function ==> This keyword points to object who called that function.
+
+// function callme() {
+//   console.log(this);
+// }
+// callme(); // window.callme();
+
+// const user = {
+//   name: "hello",
+//   age: 26,
+//   print: function () {
+//     console.log(this); // this = user
+//   },
+// };
+// console.log(user);
+// user.print();
+// here we called print function using object(user) before print function print(). so this works for only normal functions.
+
+// const user = {
+//   name: "gangadhar",
+//   age: 26,
+//   address: {
+//     city: "chennai",
+//     print: function () {
+//       console.log(this);
+//       this.city = "something changed";
+//     },
+//   },
+// };
+// user.address.print();
+// console.log(user);
+
+// let func = () => {
+//   console.log(this);
+// };
+// func();
+// window.func();
+// this is treated as variable inside arrow functions. so we get window object as output.
+// meaning of this keyword is nothing inside arrow functions.
+
+//           #### DOM (DOCUMENT OBJECT MODAL)
+
+// HTML + CSS in browser converted into javascript objects.
+// The way browser represents HTML document in form of javascript objects is called as DOM.
+
+// In order to get any html element in UI, we use document.
+// we can query the DOM (document) in 4 ways.
+
+// 1. extract element by id's:
+
+function documenttesting() {
+  const input = document.getElementById("test");
+  console.log(input);
+  console.log(input.placeholder);
+  console.log(input.tagName);
+}
 
 //                  ##### CLASSES IN JS
 
