@@ -1,5 +1,5 @@
-*{
-  background-color: rgb(209, 176, 176);
+* {
+  background-color: rgb(254, 254, 254);
 }
 .aqua {
   background-color: rgb(178, 114, 114);
@@ -11,4 +11,22 @@
   background-color: rgb(87, 87, 143);
   height: 100px;
   width: 100px;
+}
+.container {
+  border: 3px solid blue;
+  padding: 10px;
+}
+.child {
+  border: 3px solid rgb(255, 62, 4);
+  padding: 6px;
+}
+.box {
+  border: 3px solid blue;
+  padding: 30px;
+}
+.active {
+  background-color: tomato;
+  padding: 40px;
+  font-size: 20px;
+  border-radius: 10px;
 }

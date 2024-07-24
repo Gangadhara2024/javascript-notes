@@ -316,9 +316,27 @@
 // };
 // fetchalldata(1);
 
-if (!Array.prototype.includes) {
-    Array.prototype.includes = function(searchElement) {
-      return this.indexOf(searchElement) !== -1;
-    };
-  }
-  
+// const btn1 = document.getElementById("btn1");
+
+// const f1 = () => {
+//   console.log("f1 occured");
+// };
+// const f2 = () => {
+//   console.log("f2 occured");
+// };
+// btn1.addEventListener("click", f1);
+// btn1.addEventListener("click", f2);
+// // callback fn 'f' will be called when event occurs.
+
+// const box = document.querySelector(".box");
+
+// box.addEventListener("mouseenter", () => {
+//   // box.classList.add("active");
+//   box.classList.toggle("active");
+// });
+
+// box.addEventListener("mouseleave", () => {
+//   // box.classList.remove("active");
+//   box.classList.toggle("active");
+// });
+// // toggle => means if class is there it do not add class. and reverse of it  

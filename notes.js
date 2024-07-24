@@ -726,14 +726,157 @@
 // In order to get any html element in UI, we use document.
 // we can query the DOM (document) in 4 ways.
 
-// 1. extract element by id's:
+// ### extract element by id's: If id is present it gives that html element / else it gives null.
 
-function documenttesting() {
-  const input = document.getElementById("test");
-  console.log(input);
-  console.log(input.placeholder);
-  console.log(input.tagName);
-}
+// function extractbyId() {
+//   const input = document.getElementById("test");
+//   console.log(input);
+//   console.log(input.placeholder);
+//   console.log(input.tagName);
+//   input.type = "checkbox";
+// }
+
+// ### extract element by classname: It is like array and we can have class[0], class[1]. if class is present it gives that html element / else it gives empty array.
+
+// function extractbyclass() {
+//   const class1 = document.getElementsByClassName("abcsd");
+//   console.log(class1);
+//   console.log(class1.length);
+//   console.log(class1[1]);
+// }
+
+// ### extract element by Tagname: It is like array format.
+
+// function extractbytagname() {
+//   const tag = document.getElementsByTagName("b");
+//   console.log(tag);
+// }
+
+// ### extract element by querselectorAll: It is like array format. gives all classname with .abc
+
+// function extractbyqueryall() {
+//   const tag = document.querySelectorAll(".abc");
+//   console.log(tag);
+//   // console.log(tag[0]);
+// }
+
+// ### extract element by querselector: gives classname with .abc only 1st one.
+
+// function extractbyquery() {
+//   const tag = document.querySelector(".abc");
+//   console.log(tag);
+// }
+
+// ### Removing node(HTML element) from DOM tree (UI).
+
+// function takeaction() {
+//   //   const bold = document.querySelector("b");
+//   //   bold.remove();
+
+//   const div = document.querySelector(".child");
+//   div.remove();
+// }
+
+// ### Adding element in DOM tree.
+/**
+ * for adding new element.
+ *  1. create the element.
+ *  2. then we add newly created element into DOM tree wherever we want.
+ *
+ */
+
+// function takeaction() {
+//   const barath = document.createElement("p");
+//   barath.innerText = "india won oh";
+
+//   const africa = document.createElement("p");
+//   africa.innerText = "africa lost";
+
+//   const parent = document.querySelector(".child");
+//   //   parent.appendChild(barath);
+//   //   parent.appendChild(africa);
+//   parent.append(barath, africa);
+// }
+// createElement creates new element.
+// appendChild adds element at end of parent.(i.e child class).
+// appendChild can take one argument at a time. it cannot take more than one argument.
+// to add more elements we use append();
+
+// to add element before bold in .child
+
+// function takeaction() {
+//   const para = document.createElement("p");
+//   para.innerText = "gangadhar";
+
+//   const parent = document.querySelector(".child");
+//   const span = document.querySelector("span");
+//   const bold = document.querySelector("b");
+
+//   parent.insertBefore(para, span); // adds element before span.
+//   parent.insertBefore(para, bold); // adds element before bold.
+// }
+// take parent element to add into that div element.
+// insertBefore takes (para) as newly added element, (bold) as before which element to add.
+
+// function takeaction() {
+//   const div = document.createElement("div");
+//   div.innerText = "div text added";
+
+//   const body = document.getElementsByTagName("body")[0];
+//   const container = document.querySelector(".container");
+
+//   body.append(div, container);
+// }
+
+// function takeaction() {
+//   const div = document.createElement("div");
+//   const p = document.createElement("p");
+//   p.innerText = "kohli: 112";
+
+//   const b = document.createElement("b");
+//   b.innerText = "rohit: 50";
+
+//   div.append(p, b);
+//   console.log(div);
+
+//   const container = document.querySelector(".container");
+//   document.body.insertBefore(div, container);
+// }
+
+//            #### EVENTS IN JS
+
+// const btn1 = document.getElementById("btn1");
+
+// const f1 = () => {
+//   console.log("f1 occured");
+// };
+// const f2 = () => {
+//   console.log("f2 occured");
+// };
+// btn1.addEventListener("click", f1);
+// btn1.addEventListener("click", f2);
+// // callback fn 'f' will be called when event occurs.
+
+// const box = document.querySelector(".box");
+// box.addEventListener("mouseenter", () => {
+//   console.log("mouse entered");
+// });
+
+// box.addEventListener("mouseleave", () => {
+//   console.log("mouse left");
+// });
+
+// const box = document.querySelector(".box");
+// box.addEventListener("mouseenter", () => {
+//   // box.classList.add("active");
+//   box.classList.toggle("active");
+// });
+
+// box.addEventListener("mouseleave", () => {
+//   // box.classList.remove("active");
+//   box.classList.toggle("active");
+// });
+// // toggle => means if class is there it do not add class. and reverse of it 
 
 //                  ##### CLASSES IN JS
 
