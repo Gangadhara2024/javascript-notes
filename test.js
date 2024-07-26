@@ -445,28 +445,28 @@
 //   clearInterval(timerId);
 // });
 
-const text = document.getElementById("text");
-const releaseDate = new Date(2024, 6, 27, 15, 30, 0, 0);
-const stoptimer = document.getElementById("stopTimer");
+// const text = document.getElementById("text");
+// const releaseDate = new Date(2024, 6, 27, 15, 30, 0, 0);
+// const stoptimer = document.getElementById("stopTimer");
 
-const findDifference = (instance) => {
-  let secondsGap = (releaseDate - instance) / 1000;
+// const findDifference = (instance) => {
+//   let secondsGap = (releaseDate - instance) / 1000;
 
-  let days = parseInt(secondsGap / (24 * 60 * 60));
-  remSec = secondsGap - days * 24 * 60 * 60;
-  let hrs = parseInt(remSec / (60 * 60));
-  remSec = remSec - hrs * 60 * 60;
-  let mins = parseInt(remSec / 60);
-  remSec = remSec - mins * 60;
+//   let days = parseInt(secondsGap / (24 * 60 * 60));
+//   remSec = secondsGap - days * 24 * 60 * 60;
+//   let hrs = parseInt(remSec / (60 * 60));
+//   remSec = remSec - hrs * 60 * 60;
+//   let mins = parseInt(remSec / 60);
+//   remSec = remSec - mins * 60;
 
-  return `${days} Days : ${hrs} Hrs : ${mins} Min : ${parseInt(remSec)} Sec `;
-};
-const updateTime = () => {
-  let currentTime = new Date();
-  text.innerText = findDifference(currentTime);
-};
-let id = setInterval(updateTime, 1000);
+//   return `${days} Days : ${hrs} Hrs : ${mins} Min : ${parseInt(remSec)} Sec `;
+// };
+// const updateTime = () => {
+//   let currentTime = new Date();
+//   text.innerText = findDifference(currentTime);
+// };
+// let id = setInterval(updateTime, 1000);
 
-stoptimer.addEventListener("click", () => {
-  clearInterval(id);
-});
+// stoptimer.addEventListener("click", () => {
+//   clearInterval(id);
+// });
