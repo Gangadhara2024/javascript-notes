@@ -928,9 +928,9 @@
 //  3.bubbling
 
 // HTML => body => div => button => span
-// the event will move from {HTML to body to div to button}. moving from HTML to target element(button) is phase called capturing phase.
+// the event will move from {HTML to body to div to button}. moving from HTML(parent) to target element(button) is phase called capturing phase.
 // here button is target, so event stops at target element. this phase is called target phase.
-// from target event will go back from {target to div to body to HTML}. this phase is called bubbling.
+// from target event will go back from {target to div to body to HTML} target to parent(HTML). this phase is called bubbling.
 
 // const body = document.body;
 // const parent = document.querySelector(".parent");
@@ -953,6 +953,11 @@
 //   console.log(5);               // 1 3 5 4 2
 // }, true);
 
+// by default every listener is added for bubbling phase not for capturing phase.
+// if 3rd argument is false, then it is bubbling phase, true then it is capturing phase.
+// in above code events executes based on first capturing from HTML to target element(in capturing true values excutes).
+// after target element bubbling phase from target element to HTML(in bubbling false values excutes).
+
 // parent.addEventListener("click", () => {
 //     console.log(1);
 // }, false);
@@ -973,10 +978,15 @@
 // }, false);
 
 // event.stopPropagation() ==> means event will stop executing further events.
+// here target element is child so, parent has 3 event listeners in that case 2 line runs and further parent listeners excutes in case of e.stpoPropagation();
+// in case of event.stopImmediatePropagation(), further parent does not excutes as event.stopImmediatePropagation() stops excuting immediately.
+// here line 2 excutes and stops it will not further go to next element to excute.
+
 // parent.addEventListener("click", () => {
 //     console.log(1);
 // }, false);
-// parent.addEventListener("click", () => {
+// parent.addEventListener("click", (e) => {
+//    e.stopPropagation();
 //    console.log(2);
 // }, true);
 // parent.addEventListener("click", () => {
@@ -986,9 +996,9 @@
 //    console.log(4);
 // }, false);
 // child.addEventListener("click", (e) => {
-//     e.stopPropagation();
-//     console.log(4);
+//    console.log(5);
 //  }, true);
+
 // event.stopImmediatePropagation() ==> stops propagation immediately. if parent event is present also it will not excute further.
 // parent.addEventListener("click", (e) => {
 //     e.stopImmediatePropagation();
@@ -1007,11 +1017,6 @@
 //     e.stopPropagation();
 //     console.log(4);
 //  }, true);
-
-// by default every listener is added for bubbling phase not for capturing phase.
-// if 3rd argument is false, then it is bubbling phase, true then it is capturing phase.
-// in above code events executes based on first capturing from HTML to target element(in capturing true values excutes).
-// after target element bubbling phase from target element to HTML(in bubbling false values excutes).
 
 //       #### JSON METHODS
 // String format of javascript object is called as JSON.
@@ -1057,7 +1062,7 @@
 // birthdate will give (Mon Aug 14 2023 11:00:00 GMT+0530 (India Standard Time))
 // newdate wil give (Thu Jul 25 2024 14:52:00 GMT+0530 (India Standard Time))
 // getTime will give milliseconds since january 1, 1970 12:00 AM.
-// then convert milliseconds into seconds.
+// then e1/1000 convert milliseconds into seconds.
 // we get difference b/w birthdate and newdate in seconds
 //  (24 * 60 * 60): Converts the difference from seconds to days by dividing by the number of seconds in a day (24 hours * 60 minutes * 60 seconds).
 // gives output as number of days b/w previous birthday and presentdate.
@@ -1080,14 +1085,15 @@
 // setTimeout: returns a number {timeoutId}
 // setTimeout takes 2 parameters {1. callback function} {2. number}
 
-// console.log(1);
+// console.log(11);
 // let f = setTimeout(() => {
 //   console.log("timer done");
 // }, 3000);
-// console.log(2);
+// console.log(22);
+// console.log(f); // it will give timerId of f function.
 
 // first console.log(1) is excuted after that f function excutes and wait for 3sec to excute.
-// so F function will wait and in mean time console.log(2) excutes. 
+// so F function will wait and in mean time console.log(2) excutes.
 // f function will be sent to callback queue, so queue excutes code line by line using time in setTimeout, then f function will sent to event loop.
 // event loop checks if callstack is empty or any other line of code is running.
 // If callstack is empty then f function is sent to callstack and code excutes.
@@ -1104,7 +1110,66 @@
 
 // by using clearTimeout(timerId), function stops excuting.
 
-//                  ##### CLASSES IN JS
+// setInterval():
+
+// let count = 0;
+// let timerId = setInterval(() => {
+//   console.log(++count);
+// }, 1000);
+// // for every 1sec, count changes and prints count value'.
+
+// setTimeout(() => {
+//   console.log("clear interval");
+//   clearInterval(timerId);
+// }, 3000);
+// after 3sec timer will stop excuting timerId function.
+
+// Timer examples:-
+// const text = document.getElementById("timer");
+// const start = document.getElementById("start");
+// const stop = document.getElementById("stop");
+
+// let cnt = 0;
+// let timerId;
+// start.addEventListener("click", () => {
+//   timerId = setInterval(() => {
+//     text.innerText = ++cnt;
+//   }, 1000);
+// });
+// stop.addEventListener("click", () => {
+//   // typeof timerId === "number" ? clearInterval(timerId) : alert("start timer");
+//   // timerId = undefined;
+//   console.log("clear timerid");
+//   clearInterval(timerId);
+// });
+
+// const text = document.getElementById("text");
+// const releaseDate = new Date(2024, 6, 27, 15, 30, 0, 0);
+// const stoptimer = document.getElementById("stopTimer");
+
+// const findDifference = (instance) => {
+//   let secondsGap = (releaseDate - instance) / 1000;
+
+//   let days = parseInt(secondsGap / (24 * 60 * 60));
+//   remSec = secondsGap - days * 24 * 60 * 60;
+//   let hrs = parseInt(remSec / (60 * 60));
+//   remSec = remSec - hrs * 60 * 60;
+//   let mins = parseInt(remSec / 60);
+//   remSec = remSec - mins * 60;
+
+//   return `${days} Days : ${hrs} Hrs : ${mins} Min : ${parseInt(remSec)} Sec `;
+// };
+// const updateTime = () => {
+//   let currentTime = new Date();
+//   text.innerText = findDifference(currentTime);
+// };
+// let id = setInterval(updateTime, 1000);
+
+// stoptimer.addEventListener("click", () => {
+//   clearInterval(id);
+// });
+
+                //  ##### CLASSES IN JS
 
 // class ==> Use the keyword {class} to create a class. Always add a method named constructor().
 // To create an instance of a class, you use the new keyword:

@@ -415,7 +415,58 @@
 // clearTimeout(timerId);
 // by using clearTimeout(timerId), function stops excuting.
 
-let count = 0;
-setInterval(() => {
-  console.log(++count);
-}, 1000);
+// let count = 0;
+// let timerId = setInterval(() => {
+//   console.log(++count);
+// }, 1000);
+// // for every 1sec, count changes and prints count value'.
+
+// setTimeout(() => {
+//   console.log("clear interval");
+//   clearInterval(timerId);
+// }, 3000);
+// // after 3sec timer will stop excuting timerId function.
+
+// const text = document.getElementById("timer");
+// const start = document.getElementById("start");
+// const stop = document.getElementById("stop");
+
+// let cnt = 0;
+// let timerId;
+// start.addEventListener("click", () => {
+//   timerId = setInterval(() => {
+//     text.innerText = ++cnt;
+//   }, 1000);
+// });
+// stop.addEventListener("click", () => {
+//   // typeof timerId === "number" ? clearInterval(timerId) : alert("start timer");
+//   // timerId = undefined;
+//   console.log("clear timerid");
+//   clearInterval(timerId);
+// });
+
+const text = document.getElementById("text");
+const releaseDate = new Date(2024, 6, 27, 15, 30, 0, 0);
+const stoptimer = document.getElementById("stopTimer");
+
+const findDifference = (instance) => {
+  let secondsGap = (releaseDate - instance) / 1000;
+
+  let days = parseInt(secondsGap / (24 * 60 * 60));
+  remSec = secondsGap - days * 24 * 60 * 60;
+  let hrs = parseInt(remSec / (60 * 60));
+  remSec = remSec - hrs * 60 * 60;
+  let mins = parseInt(remSec / 60);
+  remSec = remSec - mins * 60;
+
+  return `${days} Days : ${hrs} Hrs : ${mins} Min : ${parseInt(remSec)} Sec `;
+};
+const updateTime = () => {
+  let currentTime = new Date();
+  text.innerText = findDifference(currentTime);
+};
+let id = setInterval(updateTime, 1000);
+
+stoptimer.addEventListener("click", () => {
+  clearInterval(id);
+});
