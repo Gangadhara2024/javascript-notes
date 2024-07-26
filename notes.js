@@ -8,15 +8,13 @@
 // var car = null; // Null
 // var city; // Undefined
 // var id = Symbol("id"); // Symbol
-
 // primitive datatypes are stored in stack memeory and not growable in size.
 
-//  NON-PRIMITIVE (Reference) Types: These are more complex types that are made up of multiple values and are mutable (can be changed).
+// NON-PRIMITIVE (Reference) Types: These are more complex types that are made up of multiple values and are mutable (can be changed).
 
 // 1. objects.
 // 2. Array.
 // 3. Function.
-
 // Non-primitive datatypes are stored in heap memeory and growable in size.
 
 /**                                             VARIABLES.
@@ -137,7 +135,7 @@
 // };
 // const data = callme(2, 4);
 // console.log(data);
-// here function name is not present so it is called as anonymous function.
+// here function name is not present, so it is called as anonymous function.
 
 //  3. Arrow Functions:
 
@@ -170,9 +168,9 @@
 //  4. Immediately Invoked Function Expressions (IIFE):
 // Immediately Invoked Function Expressions (IIFE) are JavaScript functions that are executed as soon as they are defined.
 
-// (function() {
-//     // This code is executed immediately
-//     console.log("This function is immediately invoked.");
+// (function () {
+//   // This code is executed immediately
+//   console.log("This function is immediately invoked.");
 // })();
 
 //           #### ARRAYS IN JS
@@ -219,6 +217,11 @@
 // for (let j of obj) {
 //   console.log(j);
 // }
+
+// let obj1 = { a: 20 }; // #200
+// let obj2 = { b: 20 }; // #300
+// console.log(obj1 === obj2);
+// here obj1 and obj2 are not equal because, they point to different memory reference.
 
 //                                         #### ARRAY METHODS.
 
@@ -398,25 +401,6 @@
 // here processData is callback passed to fetchdata. when callback() fn is called then processData
 // function is called and prints data.
 
-// @@@@  callbacks with promises.
-
-// function fetchData() {
-//     return new Promise((resolve, reject) => {
-//       setTimeout(() => {
-//         const data = 'Some data';
-//         resolve(data);
-//       }, 1000);
-//     });
-//   }
-
-//   fetchData()
-//     .then(data => {
-//       console.log('Data:', data);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-
 //                           ####  ARRAY METHODS OF HOF:
 
 // **** FOREACH:
@@ -594,7 +578,7 @@
 //   console.log(a + b); // 22 + 24 => 46
 //   let f1 = () => {
 //     let b = 30;
-//     console.log(a + b);
+//     console.log(a + b); // 22 + 30 => 52
 //   };
 //   return [a - b, f1]; // [-2, f1]
 // };
@@ -627,7 +611,7 @@
 // console.log(a); //20
 // console.log(b); // b is not defined
 
-// var and function decleartion are not block scoped, but they are context scoped.
+// var and function declaration are not block scoped, but they are context scoped.
 /**
  *  Here block scoped means present inside block in whole container in callstack.
  *  where as context scope means in container.
@@ -667,7 +651,7 @@
 // window.console.log("something");
 
 // console.log(this === window); // here this and window is same.
-// variables which are declared with var,function keywords in global are part of window object.
+// variables which are declared with var, function keywords in global are part of window object.
 
 // let aaa = 100;
 // var aa = 20;
@@ -676,7 +660,7 @@
 // }
 // aaaa();
 // window.aaaa();
-// this.aaaa();
+// this.aaaa(); // calling function aaaa() is same in all 3 aspects.
 
 // when This keyword is used inside function ==> This keyword points to object who called that function.
 
@@ -694,7 +678,8 @@
 // };
 // console.log(user);
 // user.print();
-// here we called print function using object(user) before print function print(). so this works for only normal functions.
+// here we called print function using object(user) before print function print(). in this way we can access this key word inside user object.
+// so this works for only normal functions.
 
 // const user = {
 //   name: "gangadhar",
@@ -845,17 +830,27 @@
 
 //            #### EVENTS IN JS
 
+/**
+ * event listener will take minimum of  2 parameters.
+ * 1. event type.
+ * 2. event listener/callback
+ */
+
 // const btn1 = document.getElementById("btn1");
 
-// const f1 = () => {
+// const f1 = (event) => {
+//   console.log(event);
 //   console.log("f1 occured");
 // };
-// const f2 = () => {
+// const f2 = (event) => {
+//   console.log(event);
 //   console.log("f2 occured");
 // };
 // btn1.addEventListener("click", f1);
 // btn1.addEventListener("click", f2);
 // // callback fn 'f' will be called when event occurs.
+// here when btn is clicked, target is btn1.
+// event object in f1, f2 functions will have properties, and have target property as btn1.
 
 // const box = document.querySelector(".box");
 // box.addEventListener("mouseenter", () => {
@@ -876,7 +871,238 @@
 //   // box.classList.remove("active");
 //   box.classList.toggle("active");
 // });
-// // toggle => means if class is there it do not add class. and reverse of it 
+// // toggle => means if class is there it do not add class. and reverse of it.
+
+//           #### IMPORTANT EVENTS
+// const input = document.querySelector("input");
+
+// input.addEventListener("focus", () => {
+//   console.log("focus event occured");
+// });
+// input.addEventListener("blur", () => {
+//   console.log("blur event occured");
+// });
+// input.addEventListener("input", () => {
+//   console.log("input event occured");
+// });
+// input.addEventListener("change", () => {
+//     console.log("change event occured");
+//   });
+// when we focus on input box, then focus event is triggered.
+// when we click outside input element, then blur is triggered.
+// when any change in input occurs, then input event is triggered.
+// change event triggers when there is change in value before focusing and after blurring.
+
+// onchange event example and use case:
+
+// const students = [
+//   "Rajesh",
+//   "Riya",
+//   "Priya",
+//   "Indu",
+//   "sirisha",
+//   "Ramu",
+//   "Rohit",
+//   "Amit",
+//   "Ankit",
+// ];
+// const namesbox = document.getElementById("names-box");
+
+// input.addEventListener("input", (e) => {
+//   namesbox.innerHTML = "";
+//   const searchValue = e.target.value.toLowerCase();
+//   students.forEach((student) => {
+//     if (student.toLowerCase().includes(searchValue)) {
+//       const para = document.createElement("p");
+//       para.innerText = student;
+
+//       namesbox.appendChild(para);
+//     }
+//   });
+// });
+
+//    #### EVENT LIFECYCLE
+// event lifecycle has 3 phases.
+//  1.capturing.
+//  2.target.
+//  3.bubbling
+
+// HTML => body => div => button => span
+// the event will move from {HTML to body to div to button}. moving from HTML to target element(button) is phase called capturing phase.
+// here button is target, so event stops at target element. this phase is called target phase.
+// from target event will go back from {target to div to body to HTML}. this phase is called bubbling.
+
+// const body = document.body;
+// const parent = document.querySelector(".parent");
+// const child = document.querySelector(".child");
+// const btn = document.querySelector(".btn");
+
+// body.addEventListener("click", () => {
+//     console.log(1);
+// }, true);
+// parent.addEventListener("click", () => {
+//     console.log(2);
+// }, false);
+// parent.addEventListener("click", () => {
+//   console.log(3);
+// }, true);
+// child.addEventListener("click", () => {
+//   console.log(4);
+// }, false);
+// child.addEventListener("click", () => {
+//   console.log(5);               // 1 3 5 4 2
+// }, true);
+
+// parent.addEventListener("click", () => {
+//     console.log(1);
+// }, false);
+// parent.addEventListener("click", () => {
+//    console.log(2);
+// }, true);
+// parent.addEventListener("click", () => {
+//     console.log(3);
+// }, true);
+// child.addEventListener("click", () => {
+//    console.log(4);
+// }, false);
+// child.addEventListener("click", () => {
+//    console.log(5);               // 2 3 5 4 6 1
+// }, true);
+// child.addEventListener("click", () => {
+//     console.log(6);
+// }, false);
+
+// event.stopPropagation() ==> means event will stop executing further events.
+// parent.addEventListener("click", () => {
+//     console.log(1);
+// }, false);
+// parent.addEventListener("click", () => {
+//    console.log(2);
+// }, true);
+// parent.addEventListener("click", () => {
+//     console.log(3);
+// }, true);
+// child.addEventListener("click", () => {
+//    console.log(4);
+// }, false);
+// child.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log(4);
+//  }, true);
+// event.stopImmediatePropagation() ==> stops propagation immediately. if parent event is present also it will not excute further.
+// parent.addEventListener("click", (e) => {
+//     e.stopImmediatePropagation();
+//     console.log(1);
+// }, true);
+// parent.addEventListener("click", () => {
+//    console.log(2);
+// }, true);
+// parent.addEventListener("click", (e) => {
+//     console.log(3);
+// }, true);
+// child.addEventListener("click", () => {
+//    console.log(4);
+// }, false);
+// child.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log(4);
+//  }, true);
+
+// by default every listener is added for bubbling phase not for capturing phase.
+// if 3rd argument is false, then it is bubbling phase, true then it is capturing phase.
+// in above code events executes based on first capturing from HTML to target element(in capturing true values excutes).
+// after target element bubbling phase from target element to HTML(in bubbling false values excutes).
+
+//       #### JSON METHODS
+// String format of javascript object is called as JSON.
+// let str = '{"a": 20, "b": 30 }';
+// console.log(str, typeof str);
+
+// JSON.stringify(); ==> converts object to string.
+// let r = { name: "hello", age: 26, city: "chennai" };
+// let res = JSON.stringify(r);
+// console.log(res);
+
+// JSON.parse(); ==> converts string to object.
+// let str = '{"name":"hello","age":26,"city":"chennai"}';
+// let final = JSON.parse(str);
+// console.log(final);
+
+//         DATE
+// const date = new Date();
+// console.log(date);
+// console.log(date.getMonth()); // [january,december] are 0 based indexing [0, 11]
+// console.log(date.getDate());
+// console.log(date.getDay()); // sun, sat [0, 6]
+// console.log(date.getHours());
+// console.log(date.getMinutes());
+// console.log(date.getSeconds());
+// console.log(date.getHours());
+
+// const birthDate = new Date(2023, 7, 14, 11, 0, 0, 0);
+// console.log(birthDate);
+// const newdate = new Date(2024, 6, 25, 14, 52, 0, 0);
+// console.log(newdate);
+
+// const e1 = birthDate.getTime() / 1000;
+// console.log(e1);
+// const e2 = newdate.getTime() / 1000;
+// console.log(e2);
+
+// let daysgap = (e2 - e1) / (24 * 60 * 60);
+// let res = parseInt(daysgap);
+// console.log(res);
+
+// .getTime(): Retrieves the number of milliseconds since January 1, 1970, 00:00:00 UTC (Unix Epoch).
+// birthdate will give (Mon Aug 14 2023 11:00:00 GMT+0530 (India Standard Time))
+// newdate wil give (Thu Jul 25 2024 14:52:00 GMT+0530 (India Standard Time))
+// getTime will give milliseconds since january 1, 1970 12:00 AM.
+// then convert milliseconds into seconds.
+// we get difference b/w birthdate and newdate in seconds
+//  (24 * 60 * 60): Converts the difference from seconds to days by dividing by the number of seconds in a day (24 hours * 60 minutes * 60 seconds).
+// gives output as number of days b/w previous birthday and presentdate.
+
+//           #### BIGINT
+// BIGINT: allows to work with large integer values with n notation at last.
+
+// let num = 43873589758258358385n; // this is called as bigInt literal.
+// console.log(num + 2n);
+
+// another way to create bigInt:
+// const int = BigInt("2353791375913851835");
+// console.log(int);
+
+// let n1 = 234331;
+// let n2 = 2358708357891358753n;
+// console.log(BigInt(n1) + n2);
+
+//                   #### TIMERS IN JS
+// setTimeout: returns a number {timeoutId}
+// setTimeout takes 2 parameters {1. callback function} {2. number}
+
+// console.log(1);
+// let f = setTimeout(() => {
+//   console.log("timer done");
+// }, 3000);
+// console.log(2);
+
+// first console.log(1) is excuted after that f function excutes and wait for 3sec to excute.
+// so F function will wait and in mean time console.log(2) excutes. 
+// f function will be sent to callback queue, so queue excutes code line by line using time in setTimeout, then f function will sent to event loop.
+// event loop checks if callstack is empty or any other line of code is running.
+// If callstack is empty then f function is sent to callstack and code excutes.
+// In this way timers run the code.
+
+// ==> we can stop excuting the registered function when it is in timer {not entered into callback queue.}
+
+// console.log("before timer");
+// let timerId = setTimeout(() => {
+//   console.log("timer done");
+// }, 2000);
+// console.log("clearing timeout");
+// clearTimeout(timerId);
+
+// by using clearTimeout(timerId), function stops excuting.
 
 //                  ##### CLASSES IN JS
 

@@ -339,4 +339,83 @@
 //   // box.classList.remove("active");
 //   box.classList.toggle("active");
 // });
-// // toggle => means if class is there it do not add class. and reverse of it  
+// // toggle => means if class is there it do not add class. and reverse of it
+
+// const date = new Date();
+// console.log(date);
+// console.log(date.getMonth()); // [january,december] are 0 based indexing [0, 11]
+// console.log(date.getDate());
+// console.log(date.getDay()); // sun, sat [0, 6]
+// console.log(date.getHours());
+// console.log(date.getMinutes());
+// console.log(date.getSeconds());
+// console.log(date.getHours());
+
+// const birthDate = new Date(2023, 7, 14, 11, 0, 0, 0);
+// console.log(birthDate);
+// const newdate = new Date(2024, 6, 25, 14, 52, 0, 0);
+// console.log(newdate);
+
+// const e1 = birthDate.getTime() / 1000;
+// console.log(e1);
+// const e2 = newdate.getTime() / 1000;
+// console.log(e2);
+
+// let daysgap = (e2 - e1) / (24 * 60 * 60);
+// let res = parseInt(daysgap);
+// console.log(res);
+
+// .getTime(): Retrieves the number of milliseconds since January 1, 1970, 00:00:00 UTC (Unix Epoch).
+// birthdate will give (Mon Aug 14 2023 11:00:00 GMT+0530 (India Standard Time))
+// newdate wil give (Thu Jul 25 2024 14:52:00 GMT+0530 (India Standard Time))
+// getTime will give milliseconds since january 1, 1970 12:00 AM.
+// then convert milliseconds into seconds.
+// we get difference b/w birthdate and newdate in seconds
+//  (24 * 60 * 60): Converts the difference from seconds to days by dividing by the number of seconds in a day (24 hours * 60 minutes * 60 seconds).
+// gives output as number of days b/w previous birthday and presentdate.
+
+// BIGINT: allows to work with large integer values with n notation at last.
+
+// let num = 43873589758258358385n; // this is called as bigInt literal.
+// console.log(num + 2n);
+
+// another way to create bigInt:
+// const int = BigInt("2353791375913851835");
+// console.log(int);
+
+// let n1 = 234331;
+// let n2 = 2358708357891358753n;
+// console.log(BigInt(n1) + n2);
+
+// let obj1 = { a: 20 };
+// let obj2 = { b: 20 };
+// console.log(obj1 === obj2);
+
+//                   #### TIMERS IN JS
+// setTimeout: returns a number {timeoutId}
+// setTimeout takes 2 parameters {1. callback function} {2. number}
+
+// console.log(1);
+// let f = setTimeout(() => {
+//   console.log("timer done");
+// }, 3000);
+// console.log(2);
+// first console.log(1) is excuted after that f function excutes and wait for 3sec to excute.
+// so F function will wait and in mean time console.log(2) excutes.
+// f function will be sent to callback queue, so queue excutes code line by line using time in setTimeout, then f function will sent to event loop.
+// event loop checks if callstack is empty or any other line of code is running.
+// If callstack is empty then f function is sent to callstack and code excutes.
+// In this way timers run the code.
+
+// console.log("before timer");
+// let timerId = setTimeout(() => {
+//   console.log("timer done");
+// }, 2000);
+// console.log("clearing timeout");
+// clearTimeout(timerId);
+// by using clearTimeout(timerId), function stops excuting.
+
+let count = 0;
+setInterval(() => {
+  console.log(++count);
+}, 1000);
