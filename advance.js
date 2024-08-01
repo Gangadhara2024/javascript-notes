@@ -157,7 +157,7 @@
 // result("pune", "SBI");
 // result("banglore", "google");
 
-// Now how to fix argument i.e city.
+// Now how to fix argument i.vent city.
 // let obj = {
 //   name: "gangadhar",
 // };
@@ -550,7 +550,7 @@
 // every .then returns new promise with data, that function is returning.
 
 // in 1st .then it is printing data as "p1 success" and that promise is returning "gangadhar".
-// so that returned value we get in 2nd .then, as new returned data i.e is "gangadhar".
+// so that returned value we get in 2nd .then, as new returned data i.vent is "gangadhar".
 // in 2nd .then, we are returning nothing, so we get undefined in 3rd then.
 
 // p1.catch(function rejectFn(err) {
@@ -655,7 +655,7 @@
 // true ==> fulfilled promise.
 // false ==> rejected promise.
 
-// @@@ Promise.all() ==> always looking for false i.e rejected promise.
+// @@@ Promise.all() ==> always looking for false i.vent rejected promise.
 
 // function promiseGen(condition, delay, resData, rejError) {
 //   return new Promise((res, rej) => {
@@ -684,7 +684,7 @@
 // In promise.all, if one promise is false then it looks for only rejected promise.
 // it will give fastest failing promise, based on timeout.
 
-// @@@ Promise.any() ==> always looking for true i.e fulfilled promise.
+// @@@ Promise.any() ==> always looking for true i.vent fulfilled promise.
 
 // function promiseGen(cond, delay, resData, rejError) {
 //   return new Promise((res, rej) => {
@@ -832,8 +832,8 @@
 //     console.log(data1);
 //     const data2 = await p2;
 //     console.log(data2);
-//   } catch (e) {
-//     console.log(e);
+//   } catch (vent) {
+//     console.log(vent);
 //   }
 // }
 // promiseHandler();
@@ -841,7 +841,7 @@
 // excecution stops at p1. it will not proceed further.
 
 //         #### FETCH
-// Fetch is function which takes url and gives us a peomise.
+// Fetch is function which takes url and gives us a promise.
 
 // const productDiv = document.getElementById("products");
 
@@ -878,8 +878,94 @@
 
 //          #### BROWSER STORAGE
 
-localStorage.setItem("authKey", 5457357);
+// localStorage.setItem("authKey", 5457357);
 // localstorage will be present in browser, even if we are closing browser.
-const key = localStorage.getItem("authKey");
-console.log(key);
+// const key = localStorage.getItem("authKey");
+// console.log(key);
 // we will get that key present in browser using getItem.
+
+//                 #### DEBOUNCING
+// Debouncing is used to improve performance of feature by controlling the time at which function should be executed.
+// Debouncing is used to improve browser performance.
+
+// Purpose: To prevent a function from running too often.
+// How It Works: It waits for a specified time after the last event before executing the function. If another event happens before this, time expires, the timer resets.
+
+// const inputText1 = (event) => {
+//   console.log(event.target.value);
+// };
+// const inputText2 = (event) => {
+//   console.log(event.target.value);
+// };
+
+// const debounceFn = (oldFn, delay) => {
+//   let id = null;
+//   return function (...params) {
+//     console.log("id ==>", id);
+//     clearTimeout(id);
+//     id = setTimeout(() => {
+//       // console.log("time runs");
+//       oldFn(...params);
+//     }, delay);
+//   };
+// };
+// const debounceMain = debounceFn(inputText2, 2000);
+
+// in debouncing, 1st user types 'iphone'for example, then with in 1sec, if user types 'iph' and 1sec time is up, then iph is printes in console,
+// after 'iph' is printed, again id will be cleared and user typed 'one', then with 1sec 'one' is printed.
+// so this process repeats, previous id is cleared and user types slow or fast, function execution depends on time here.
+// if user types fast "iphone" in 1sec, then function will execute once and it will improve browser efficiency.
+// this is debouncing.
+
+// const inputfn = document.getElementById("fruits");
+// const inputText = (text) => {
+//   console.log(text);
+// };
+
+// function debounce(fn, delay) {
+//   let timeoutId = null;
+//   return function (...args) {
+//     clearTimeout(timeoutId);
+//     timeoutId = setTimeout(() => {
+//       fn(...args);
+//     }, delay);
+//   };
+// }
+// const debounceFN = debounce(inputText, 3000);
+
+// inputfn.addEventListener("input", (e) => {
+//   debounceFN(e.target.value);
+// });
+
+//            #### THROTTLING
+// Throttling: ==> is mechanism that allows function to execute for limited no of times, after that it will block it's excution.
+// throttling is used to improve browser performance.
+let count1 = 0;
+const updatethr1 = () => {
+  count1++;
+  console.log(count1);
+};
+
+let count2 = 0;
+const updatethr2 = () => {
+  count2++;
+  console.log(count2);
+};
+
+const throttleFn = (oldFn, delay) => {
+  let gun = true;
+  return function (...args) {
+    if (gun) {
+      oldFn(...args);
+      gun = false;
+      setTimeout(() => {
+        gun = true;
+      }, delay);
+    }
+  };
+};
+const updateMain = throttleFn(updatethr2, 1000);
+// In example, we update the count after each 1sec, so first we click on button, then count is 1(gun = true)
+// it checks if (gun=true), after that it prints count(oldFn(...args)), and we stop printing count to 2, by setting gun = false.
+// so after 1sec, based on time after 1sec is completed, again count prints 2
+// in this way it repeats for every click, and excutes.
