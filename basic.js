@@ -978,7 +978,7 @@
 // }, false);
 
 // event.stopPropagation() ==> means event will stop executing further events.
-// here target element is child so, parent has 3 event listeners in that case 2 line runs and further parent listeners excutes in case of e.stpoPropagation();
+// here target element is child so, parent has 3 event listeners in that case where e.stopPropogation is present from that event it will excute only parent because e.stopPropogation is present in parent, and further parent listeners excutes(if true) in case of e.stpoPropagation();
 // in case of event.stopImmediatePropagation(), further parent does not excutes as event.stopImmediatePropagation() stops excuting immediately.
 // here line 2 excutes and stops it will not further go to next element to excute.
 
@@ -1092,15 +1092,14 @@
 // console.log(22);
 // console.log(f); // it will give timerId of f function.
 
-// first console.log(1) is excuted after that f function excutes and wait for 3sec to excute.
-// so F function will wait and in mean time console.log(2) excutes.
-// f function will be sent to callback queue, so queue excutes code line by line using time in setTimeout, then f function will sent to event loop.
+// first console.log(11) is excuted after that f function excutes and wait for 3sec to excute.
+// so F function will wait and in mean time console.log(22) excutes.
+// f function will be sent to callback queue (or) Task queue, so queue excutes code line by line and excutes all syncronous code and after that any asycronous code is present that code is send to event loop.
 // event loop checks if callstack is empty or any other line of code is running.
-// If callstack is empty then f function is sent to callstack and code excutes.
+// Once the Call Stack is empty, the Event Loop picks the callback from the Task Queue and executes it.
 // In this way timers run the code.
 
 // ==> we can stop excuting the registered function when it is in timer {not entered into callback queue.}
-
 // console.log("before timer");
 // let timerId = setTimeout(() => {
 //   console.log("timer done");
@@ -1110,7 +1109,7 @@
 
 // by using clearTimeout(timerId), function stops excuting.
 
-// setInterval():
+// ***** => setInterval():
 
 // let count = 0;
 // let timerId = setInterval(() => {
@@ -1169,7 +1168,7 @@
 //   clearInterval(id);
 // });
 
-                //  ##### CLASSES IN JS
+//  ##### CLASSES IN JS
 
 // class ==> Use the keyword {class} to create a class. Always add a method named constructor().
 // To create an instance of a class, you use the new keyword:
