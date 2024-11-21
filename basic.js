@@ -29,7 +29,7 @@
  *   ==> all code will be scanned by js engine.
  *   ==> it figure out variables and these variables will be allocated some data.
  *   ==> process of allocation of data to variables after scanning is called as HOISTING.
- *   ==> variables which are declared with let, const, var will be initialises with 'undefined.
+ *   ==> variables which are declared with let, const, var will be initialised with 'undefined.
  *   ==> variables which are declared with let, const are kept in TEMPORAL DEAD ZONE (TDZ).
  *   ==> variables which are declared with 'function' keyword gets actual value(fully hoisted).
  *
@@ -467,9 +467,8 @@
 // const numbers = [1, 2, 3, 4, 5];
 // const sum = numbers.reduce(
 //   (accumulator, currentValue) => accumulator + currentValue, 2
-
 // ); // 2 is intialvalue.
-// console.log(sum);
+// console.log(sum); 
 
 // here accumlator = 2(intialvalue) , currentvalue = 1 ==>  2 + 1 = 3,
 // here accumlator = 3(intialvalue) , currentvalue = 2 ==>  3 + 2 = 5,
@@ -600,13 +599,13 @@
 // console.log(a);
 
 // here a is not defined in outside block, because let and const decalred variables are block scoped.
-// same occur for const, because let and const decalred variables are block scoped.
+// same occur for const, because let and const declared variables are block scoped.
 
 // console.log(a); // undefined
 // if (true) {
 //   var a = 20;
 //   let b = 30;
-//   console.log(a + b); // 50
+//   console.log(a + b); // 50 
 // }
 // console.log(a); //20
 // console.log(b); // b is not defined
@@ -643,6 +642,8 @@
 
 //                #### THIS KEYWORD
 /**
+ * 
+The this keyword in JavaScript is a context-specific reference that points to the object it is currently bound to.
  * This keyword in global points to global object.
  * In browsers the global object is Window.
  */
@@ -660,7 +661,8 @@
 // }
 // aaaa();
 // window.aaaa();
-// this.aaaa(); // calling function aaaa() is same in all 3 aspects.
+// this.aaaa();
+// calling function aaaa() is same in all 3 aspects.
 
 // when This keyword is used inside function ==> This keyword points to object who called that function.
 
@@ -678,7 +680,7 @@
 // };
 // console.log(user);
 // user.print();
-// here we called print function using object(user) before print function print(). in this way we can access this key word inside user object.
+// here we called print function using object(user) before print function print(). in this way we can access this keyword inside user object.
 // so this works for only normal functions.
 
 // const user = {
@@ -702,6 +704,59 @@
 // window.func();
 // this is treated as variable inside arrow functions. so we get window object as output.
 // meaning of this keyword is nothing inside arrow functions.
+
+// Object Methods:
+// When a method is called on an object, this refers to the object the method is called on.
+
+// const person = {
+//   name: "Alice",
+//   greet() {
+//     console.log(this.name);
+//   },
+// };
+// person.greet();
+// output: "alice"
+
+// Arrow Functions:
+// Arrow functions do not bind their own this.
+
+// const person = {
+//     name: 'Alice',
+//     greet: () => {
+//         console.log(this.name);
+//     }
+// };
+// person.greet();
+// Logs undefined, as `this` refers to the outer scope (likely the global object)
+
+// Event Handlers:
+// document.querySelector('button').addEventListener('click', function () {
+//     console.log(this);
+// });
+// Logs the button element.
+
+// You can explicitly set the value of this using methods like call, apply, or bind.
+// function greet() {
+//     console.log(this.name);
+// }
+// const person = { name: 'Alice' };
+// greet.call(person);
+// Logs "Alice"
+
+// Constructors and Classes:
+// When used in a constructor function or class, this refers to the newly created object instance.
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     greet() {
+//         console.log(this.name);
+//     }
+// }
+// const alice = new Person('Alice');
+// alice.greet();
+// Logs "Alice"
 
 //           #### DOM (DOCUMENT OBJECT MODAL)
 
@@ -1168,453 +1223,4 @@
 //   clearInterval(id);
 // });
 
-//  ##### CLASSES IN JS
 
-// class ==> Use the keyword {class} to create a class. Always add a method named constructor().
-// To create an instance of a class, you use the new keyword:
-
-// class person {
-//   constructor(name, age){
-//     this.name = name
-//     this.age = age;
-//     console.log(name, age);
-//   }
-
-//   greet(){
-//     console.log(`hello i am ${this.name} age is ${this.age}`);
-//   }
-// }
-// const res = new person("gangadhar", 26);
-// res.greet();
-
-// class person {
-//   constructor(name, age){
-//     this.name = name
-//     this.age = age;
-//   }
-
-//   greet(){
-//     console.log(`hello i am ${this.name} age is ${this.age}`);
-//   }
-// }
-
-// class animal extends person{
-//   constructor(brand, city){
-//     super(brand, city);
-//     this.brand = brand;
-//     this.city = city;
-//   }
-//   greet2(){
-//     console.log(`brand is ${this.brand} city is ${this.city}`);
-//   }
-// }
-// const res = new animal("Audi", "chennai", 531055);
-// res.greet();
-// res.greet2();
-// we can get person class from animal using extends
-
-//  ADVANCES JS
-//             #### PROMISES
-
-// Promises ==> in JavaScript provide a way to handle asynchronous operations.
-// A promise is created using the Promise constructor, which takes a function (executor) with two parameters: resolve and reject.
-
-// 1. Creating a Simple Promise:
-
-// const promise = new Promise((resolve, reject) => {
-//   const condition = false;
-//   if (condition) {
-//     resolve("resolved");
-//   } else {
-//     reject("rejected");
-//   }
-// });
-
-// promise
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// 2. Asynchronous Operation with a Promise:
-
-// const promise1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let cond = false;
-//     if (cond) {
-//       res("resolved issue");
-//     }
-//     rej("rejected issue");
-//   });
-// });
-// promise1
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-
-// 3. Chaining Promises:
-
-// const prom1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     res("operation 1");
-//   }, 1000);
-// });
-// prom1.then((data) => {
-//   console.log(data);
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res("operation 2");
-//     }, 3000);
-//   })
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-//      @@@@ PROMISE.ALL
-// const promise1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p1 resolved");
-//     } else {
-//       rej("p1 rejected");
-//     }
-//   }, 2000);
-// });
-
-// const promise2 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p2 resolved");
-//     } else {
-//       rej("p2 rejected");
-//     }
-//   }, 4000);
-// });
-
-// const promise3 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p3 resolved");
-//     } else {
-//       rej("p3 rejected");
-//     }
-//   }, 1000);
-// });
-
-// Promise.all([promise1, promise2, promise3])
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-// In Promise.all, if all promises are true, then it will return array of ['p1 resolved', 'p2 resolved', 'p3 resolved'].
-// If one promise is false, then it will return that particular rejected message.
-// If all promises are false, then it returns rejected promise based on setTimeout condition with fastest time i.e(1000 > 2000 > 4000).
-
-//        @@@@  PROMISE.ANY
-
-// const promise1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p1 resolved");
-//     } else {
-//       rej("p1 rejected");
-//     }
-//   }, 2000);
-// });
-
-// const promise2 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = true;
-//     if (condition) {
-//       res("p2 resolved");
-//     } else {
-//       rej("p2 rejected");
-//     }
-//   }, 4000);
-// });
-
-// const promise3 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p3 resolved");
-//     } else {
-//       rej("p3 rejected");
-//     }
-//   }, 1000);
-// });
-
-// Promise.any([promise1, promise2, promise3])
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-// Promise.any ==> if all promise are true then, it returns first resolved promise based on setTimeout.
-// If all promises are false, it returns AggregateError.
-// If one promise is true, then it returns that particular resolved message.
-
-//             @@@@ PROMISE.RACE
-
-// const promise1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p1 resolved");
-//     } else {
-//       rej("p1 rejected");
-//     }
-//   }, 2000);
-// });
-
-// const promise2 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = true;
-//     if (condition) {
-//       res("p2 resolved");
-//     } else {
-//       rej("p2 rejected");
-//     }
-//   }, 4000);
-// });
-
-// const promise3 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p3 resolved");
-//     } else {
-//       rej("p3 rejected");
-//     }
-//   }, 5000);
-// });
-
-// Promise.race([promise1, promise2, promise3])
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-// It returns a new promise if all are true, then it resolves first promise based on setTimeout.
-// It returns a new promise if all are false, then it rejects first promise based on setTimeout.
-// If one condition is true or false, then it resolves or rejects first promise based on setTimeout.
-
-//            @@@@ PROMISE.ALLSETTLED
-// const promise1 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p1 resolved");
-//     } else {
-//       rej("p1 rejected");
-//     }
-//   }, 2000);
-// });
-
-// const promise2 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p2 resolved");
-//     } else {
-//       rej("p2 rejected");
-//     }
-//   }, 4000);
-// });
-
-// const promise3 = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     let condition = false;
-//     if (condition) {
-//       res("p3 resolved");
-//     } else {
-//       rej("p3 rejected");
-//     }
-//   }, 5000);
-// });
-
-// Promise.allSettled([promise1, promise2, promise3])
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-// Promise.allSettled ==> if all are true, it returns array of promises with
-// {status: 'fulfilled', value: 'p1 resolved'}
-// {status: 'fulfilled', value: 'p2 resolved'}
-// {status: 'fulfilled', value: 'p3 resolved'}
-// Promise.allSettled ==> if all are false, it returns array of promises with
-// {status: 'rejected', reason: 'p1 rejected'}
-// {status: 'rejected', reason: 'p2 rejected'}
-// {status: 'rejected', reason: 'p3 rejected'}
-// If p1 is true, it gives {status: 'fulfilled', value: 'p1 resolved'}
-// If p3 is false, it gives {status: 'rejected', reason: 'p3 rejected'}
-
-//                      @@@@@ AYSNC AWAIT
-// An async function is a function that returns a promise and Used to declare an asynchronous function.
-// It allows the use of await inside it to pause the execution of the function until the promise is resolved.
-
-// function fetchData() {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res("resolved data");
-//     }, 3000);
-//   });
-// }
-
-// async function getData() {
-//   console.log("fetched data");
-//   const data = await fetchData();
-//   console.log(data);
-// }
-// getData();
-// fetchdata is resolved after promise gets resolved and wait for fetchdata fn to get resolve the promise.
-
-// const userData = (userId) => {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res({ id: userId, name: "anand" });
-//     }, 1500);
-//   });
-// };
-
-// const postData = (userId) => {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res([
-//         { id: 1, userId: userId, title: "post 1" },
-//         { id: 2, userId: userId, title: "post 2" },
-//       ]);
-//     }, 3000);
-//   });
-// };
-
-// const fetchalldata = async (userId) => {
-//   try {
-//     console.log("fetching user ...");
-//     const user = await userData(userId);
-//     console.log("userdata", user);
-
-//     console.log("fetching posts ...");
-//     const posts = await postData(userId);
-//     console.log("postsdata", posts);
-//   } catch (error) {
-//     console.log("error", error);
-//   }
-// };
-// fetchalldata(1);
-
-// Error handling with async and await is straightforward using try...catch blocks. Here's an example:
-
-//                        #### CURRYING
-
-// CURRYING ==> creates chain of functions where each function returns another function until final result is achieved;
-// Currying in JavaScript is a technique where a function, instead of taking all its arguments at once,
-// takes the first one and returns a new function that takes the second one, and so on, until all arguments are provided
-
-// function add(a) {
-//   return function (b) {
-//     return function (c) {
-//       return a + b + c;
-//     };
-//   };
-// }
-// console.log(add(5)(5)(10));  // we can add arguments as in this way or in below example also.
-
-// function add(a) {
-//   return function (b) {
-//     return function (c) {
-//       return a + b + c;
-//     };
-//   };
-// }
-// const f1 = add(5);
-// const f2 = f1(10);
-// const result = f2(10);
-// console.log(result);
-
-// function foo(name) {
-//   return function (age) {
-//     return function (city) {
-//       return `${name}, ${age}, ${city}`;
-//     };
-//   };
-// }
-// const names = foo("anil");
-// const ages = names(26);
-// const result = ages("chennai");
-// console.log(result);
-
-// CURRYING WITH objects.
-
-// function foo(name) {
-//   return function (age) {
-//     return function (city) {
-//       return { name, age, city };
-//     };
-//   };
-// }
-// const names = foo("anil");
-// const ages = names(26);
-// const result = ages("chennai");
-// console.log(result);
-
-//                 #### DEBOUNCING
-// Debouncing makes sure that a function is only called once after a series of events have stopped happening for a set amount of time.
-
-// Purpose: To prevent a function from running too often.
-// How It Works: It waits for a specified time after the last event before executing the function. If another event happens before this time expires, the timer resets.
-
-// function debounce(fx, delay) {
-//   let timeout = null;
-//   return function (data) {
-//     clearTimeout(timeout); // Clears any existing timeout to ensure that the previous fx call does not execute.
-//     timeout = setTimeout(() => {
-//       fx(data);
-//     }, delay);
-//   };
-// }
-// const debounceFN = debounce(() => console.log("debounce done"), 3000);
-// debounceFN();
-// debounceFN();
-// debounceFN();
-
-// In this example, no matter how many times debouncedFunction is called, console.log('Function executed!') will only run once after 3 seconds have passed since the last call.
-
-// const inputfn = document.getElementById("fruits");
-// const inputText = (text) => {
-//   console.log(text);
-// };
-
-// function debounce(fn, delay) {
-//   let timeoutId = null;
-//   return function (text) {
-//     clearTimeout(timeoutId);
-//     timeoutId = setTimeout(() => {
-//       fn(text);
-//     }, delay);
-//   };
-// }
-// const debounceFN = debounce(inputText, 3000);
-
-// inputfn.addEventListener("input", (e) => {
-//   debounceFN(e.target.value);
-// });

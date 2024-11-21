@@ -1,9 +1,9 @@
-let count = 0;
-const t1 = setInterval(() => {
-    console.log(++count);
-}, 500);
+// const name = "arrow fn";
 
-setTimeout(() => {
-  console.log("clear timeout");
-  clearTimeout(t1);
-}, 3000);
+const person = {
+  name: "Alice",
+  greet: () => {
+    console.log("res", this.name);
+  },
+};
+person.greet();

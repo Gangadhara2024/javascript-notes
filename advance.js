@@ -131,6 +131,8 @@
 // sum.call(obj, [5, 2]); // here [5, 2] is passed only to a.
 // sum.apply(obj, [5, 2]); // here [5, 2] is passed as 5 to a and 2 to b.
 
+// In call method ==> a + b evaluates to [5, 2] + undefined, resulting in the string "5,6undefined" due to JavaScript's type coercion.
+
 // @@@@ BIND method:
 // bind gives us function(result)in below example, which has value of this keyword as obj
 // result = intro.bind(obj) is called binding intro function with obj. we get result keyword as function(intro).
@@ -157,7 +159,7 @@
 // result("pune", "SBI");
 // result("banglore", "google");
 
-// Now how to fix argument i.vent city.
+// Now how to fix argument i.e city.
 // let obj = {
 //   name: "gangadhar",
 // };
@@ -320,7 +322,7 @@
 //   }
 //   withdraw(amount) {
 //     this.balance -= amount;
-//   }
+//   } 
 // }
 // const user10 = new User("anil", "axis", 1000);
 // const user11 = new User("induja", "icici", 3000);
