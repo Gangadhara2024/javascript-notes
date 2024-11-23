@@ -131,7 +131,7 @@
 // sum.call(obj, [5, 2]); // here [5, 2] is passed only to a.
 // sum.apply(obj, [5, 2]); // here [5, 2] is passed as 5 to a and 2 to b.
 
-// In call method ==> a + b evaluates to [5, 2] + undefined, resulting in the string "5,6undefined" due to JavaScript's type coercion.
+// In call method ==> a + b evaluates to [5, 2] + undefined, resulting in the string "5,2undefined" due to JavaScript's type coercion.
 
 // @@@@ BIND method:
 // bind gives us function(result)in below example, which has value of this keyword as obj
@@ -183,14 +183,18 @@
 
 //       PROTOTYPES
 
+// PROTOTYPES ==> is mechanism by which objects inherit properties and methods from other objects. Every JavaScript object has an internal property called [[Prototype]] that points to another object, which is called its prototype.
+// INHERITANCE ==> is where one class (child or subclass) can acquire the properties and behaviors (methods) of another class (parent or superclass).
+
 // let arr = [1, 4, 6, 4];
 
 // console.log(arr.__proto__);
 // console.log(Array.prototype);
 // Array => is function that creates arrays in js.
+
 // Array.prototype ==> will give all arrays built-in functions in JS as [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
 // arr.__proto__ ==> will also give all arrays built-in functions in JS as [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
-// Array => function + object. ==> object which has prototype or __proto__.
+// Array => function + object. ==> object which has [ prototype (or) __proto__ ].
 // prototype and __proto__ are collections of functions.
 // prototype is key that holds collection of properties.
 // arr.__proto__.map();
@@ -209,13 +213,14 @@
 //   name: "hello",
 //   city: "vizag",
 // };
-// console.log(obj1.city);
+// console.log(obj1.city); ==> is undefined.
 
 // obj1.__proto__ = obj2;
 // // 1st city is searched in obj1 of __proto__ If it is not there, then it is undefined. then it will ask proto chain.
 // // here we given access to proto chain in obj2 by ==> obj1.__proto__ = obj2, now city is searched in obj2, so we get value of city after prototypical-Inheritance.
 // // obj1.__proto__  is ==> object.prototype.
 // // obj1 can access properties of obj2 by __proto__.
+
 // console.log(obj1.city);
 
 //           #### POLYFILLS
@@ -274,7 +279,109 @@
 // add(2, 6, 3, 5, 7, 8);
 
 //           #### OOPS( OBJECT ORIENTED PROGRAMMING )
+// OOP (Object-Oriented Programming), a programming paradigm where you structure code using "objects." Objects are collections of properties (data) and methods (functions).
 // oop => is programming that involves objects.
+
+//  1. OBJECTS ==> object is a collection of related data and functions, grouped together in a single unit.
+// const car = {
+//   brand: "toyota",
+//   color: "red",
+//   start: function () {
+//     console.log("car start");
+//   },
+//   stop: function () {
+//     console.log("car stops");
+//   },
+// };
+// console.log(car.brand);
+// car.start();
+// car.stop();
+
+// Properties are data (e.g., brand, color).
+// Methods are functions (e.g., start, stop).
+
+//  2. CLASS ==> is blueprint for creating objects with similar properties and methods.
+// Instead of defining an object directly, you define a class and use it to create multiple objects.
+// class Car {
+//   constructor(colour, brand) {
+//     this.colour = colour;
+//     this.brand = brand;
+//   }
+//   start() {
+//     console.log(`${this.colour} is starting`);
+//   }
+//   end() {
+//     console.log(`${this.brand} is starting`);
+//   }
+// }
+// const m1 = new Car("red", "BENZ");
+// const m2 = new Car("blue", "AUDI");
+// const m3 = new Car("yellow", "FERRARI");
+// console.log(m1, m2, m3);
+
+// constructor: is special method used to initialize object properties.
+// You can create many objects (m1, m2, m3) from the same class.
+
+// Inheritance ==> Inheritance allows one class (child class) to inherit properties and methods from another class (parent class).
+// class Car {
+//   constructor(brand, color) {
+//     this.brand = brand;
+//     this.color = color;
+//   }
+//   getcar() {
+//     console.log(`color of car is ${this.color}`);
+//   }
+// }
+
+// class Vehicle extends Car {
+//   getcity() {
+//     console.log(`car is from london ${this.brand}`);
+//   }
+// }
+// const m1 = new Vehicle("BENZ", "red");
+// m1.getcar();
+// m1.getcity();
+
+// Encapsulation ==> Encapsulation means keeping some data or methods private so they can only be accessed within the object.
+// class Bank {
+//   #bank;
+//   constructor(name, bank) {
+//     this.name = name;
+//     this.#bank = bank;
+//   }
+//   getDetails() {
+//     return `name : ${this.name} bank : ${this.#bank}`;
+//   }
+// }
+// const res = new Bank("gangadhar", "SBI");
+// console.log(res);
+// console.log(res.getDetails());
+// console.log(res.bank);
+// Only the methods inside the class can access private properties.
+
+//  Polymorphism ==> Polymorphism means using the same method name but having different behaviors for different objects. 
+// class Animal {
+//   constructor(colour) {
+//     this.colour = colour;
+//   }
+//   speak() {
+//     console.log(`animal colour is ${this.colour}`);
+//   }
+// }
+// class Dog extends Animal {
+//   speak() {
+//     console.log(`dog colour is ${this.colour}`);
+//   }
+// }
+// class Cat extends Dog {
+//   speak() {
+//     console.log(`cat colour is ${this.colour}`);
+//   }
+// }
+// const res = [new Dog("black"), new Cat("white"), new Animal("red")];
+// console.log(res);
+// res.forEach((i) => i.speak());
+// Objects of different types (Dog, Cat, Animal) are stored in the same array and treated uniformly by calling their speak method.
 
 // let store = {
 //   withdraw(amount) {
@@ -312,19 +419,22 @@
 // __proto__ ==> points to function.prototype.
 // new keyword will create new memeory, and new keyword will ignore return keyword.
 // new keyword will call User function with new memeory as refernece.
-// it's returning new memeory to user1.
-// here we create same memory for withdraw function. by not creating extra memory.
+// it's returning new memeory to user1. here we create same memory for withdraw function. by not creating extra memory for it .
 
 //             #### CLASS IN JS
+
+// class ==> is a blueprint for creating objects with shared properties and methods.
+// constructor ==> is a special type of function used to create and initialize objects.
+
 // class User {
 //   constructor(name, bank, balance) {
 //     (this.name = name), (this.bank = bank), (this.balance = balance);
 //   }
 //   withdraw(amount) {
 //     this.balance -= amount;
-//   } 
+//   }
 // }
-// const user10 = new User("anil", "axis", 1000);
+// const user10 = new User("anil", "axis", 1000);  
 // const user11 = new User("induja", "icici", 3000);
 // console.log(user10);
 // user11.withdraw(500);
@@ -332,6 +442,9 @@
 
 // we use class for writing withdraw function in one single function.
 // In classes we pass User function in constructor function, and withdraw fn in single braces.
+// The constructor method is called when a new instance of the class is created using the new keyword.
+// User class will create {object} with defined properties as name, bank, balance.
+// this refers to the instance of the class that is calling the method.
 
 // In JavaScript, inheritance is a mechanism that allows one object to acquire the properties and methods of another object
 
@@ -353,7 +466,10 @@
 //     console.log(amount);
 //   }
 // }
-// By using extends keyword, we get access to Bank constructor function using super keyword.
+// INHERITANCE ==> means child class inherits all public and protected properties and methods from the parent class.
+// extends means ==> When a class extends another class, it inherits the properties and methods of the parent class, allowing the child class to reuse.
+// By using extends keyword, we get access to Bank constructor function.
+// extends ==> Used to call the constructor or methods of the parent class.
 // super keyword will get access to Bank's constructor function.
 // In class, memory is created in super keyword. super keyword can be written after constructor function.
 // 'This' keyword does not exists before super keyword is called ?
@@ -393,10 +509,13 @@
 // vijay.setName("gangadhar");
 // console.log(vijay);
 
-// #balance is used to make any property private.
 // by using getters and setters we can make our own functions for updating and getting values.
 // by using getters and setters, we can access non private function.
 // getter function will not take parameter, but setter will take only 1 parameter.
+
+// PRIVATE in class ==> #balance is used to make any property private.
+// These private fields are accessible only within the class they are defined in, and they cannot be accessed or modified from outside the class.
+// console.log(vijat.balance) If we try to get balance it gets UNDEFINED, because balance is private property.
 
 //    #### CALLBACK AND CALLBACK HELL
 

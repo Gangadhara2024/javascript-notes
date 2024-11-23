@@ -468,7 +468,7 @@
 // const sum = numbers.reduce(
 //   (accumulator, currentValue) => accumulator + currentValue, 2
 // ); // 2 is intialvalue.
-// console.log(sum); 
+// console.log(sum);
 
 // here accumlator = 2(intialvalue) , currentvalue = 1 ==>  2 + 1 = 3,
 // here accumlator = 3(intialvalue) , currentvalue = 2 ==>  3 + 2 = 5,
@@ -605,7 +605,7 @@
 // if (true) {
 //   var a = 20;
 //   let b = 30;
-//   console.log(a + b); // 50 
+//   console.log(a + b); // 50
 // }
 // console.log(a); //20
 // console.log(b); // b is not defined
@@ -766,7 +766,7 @@ The this keyword in JavaScript is a context-specific reference that points to th
 // In order to get any html element in UI, we use document.
 // we can query the DOM (document) in 4 ways.
 
-// ### extract element by id's: If id is present it gives that html element / else it gives null.
+// ### extract element by id's: If id is present it gives that html  element / else it gives null.
 
 // function extractbyId() {
 //   const input = document.getElementById("test");
@@ -882,6 +882,17 @@ The this keyword in JavaScript is a context-specific reference that points to th
 //   const container = document.querySelector(".container");
 //   document.body.insertBefore(div, container);
 // }
+
+// function takeaction() {
+//     const div = document.createElement("div");
+//     const node = document.createTextNode("hello world");
+
+//     div.appendChild(node);
+
+//     const body = document.querySelector("body");
+//     body.appendChild(div);
+//   }
+// createTextNode ==> will add plain text to dom.
 
 //            #### EVENTS IN JS
 
@@ -1149,7 +1160,7 @@ The this keyword in JavaScript is a context-specific reference that points to th
 
 // first console.log(11) is excuted after that f function excutes and wait for 3sec to excute.
 // so F function will wait and in mean time console.log(22) excutes.
-// f function will be sent to callback queue (or) Task queue, so queue excutes code line by line and excutes all syncronous code and after that any asycronous code is present that code is send to event loop.
+// f function will be sent to callback queue (or) Task queue, so queue excutes code line by line and excutes all syncronous code and after that any asycronous code is  is send to event loop.
 // event loop checks if callstack is empty or any other line of code is running.
 // Once the Call Stack is empty, the Event Loop picks the callback from the Task Queue and executes it.
 // In this way timers run the code.
@@ -1222,5 +1233,3 @@ The this keyword in JavaScript is a context-specific reference that points to th
 // stoptimer.addEventListener("click", () => {
 //   clearInterval(id);
 // });
-
-

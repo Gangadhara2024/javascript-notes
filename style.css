@@ -1,36 +1,11 @@
-* {
-  background-color: rgb(254, 254, 254);
-}
-.aqua {
-  background-color: rgb(178, 114, 114);
-  height: 1000px;
-  width: 400px;
-  /* overflow-y: scroll; */
-}
-.lime {
-  background-color: rgb(87, 87, 143);
-  height: 100px;
-  width: 100px;
-}
-.container {
-  border: 3px solid blue;
-  padding: 10px;
-}
 .parent {
-  background-color: rgb(202, 121, 107);
-  padding: 100px;
+  background-color: rgb(219, 147, 54);
+  padding: 50px;
 }
 .child {
-  background-color: rgb(232, 152, 25);
-  padding: 40px;
-}
-.box {
-  border: 3px solid blue;
+  background-color: rgb(44, 102, 152);
   padding: 30px;
 }
-.active {
-  background-color: tomato;
-  padding: 40px;
-  font-size: 20px;
-  border-radius: 10px;
+.btn {
+  background-color: rgb(218, 143, 143);
 }
