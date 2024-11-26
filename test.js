@@ -1,22 +1,14 @@
-class Animal {
-  constructor(colour) {
-    this.colour = colour;
-  }
-  speak() {
-    console.log(`animal colour is ${this.colour}`);
-  }
-}
-class Dog extends Animal {
-  speak() {
-    console.log(`dog colour is ${this.colour}`);
-  }
-}
-class Cat extends Dog {
-  speak() {
-    console.log(`cat colour is ${this.colour}`);
-  }
-}
-const res = [new Dog("black"), new Cat("white"), new Animal("red")];
-console.log(res);
+// const fetxhdata = async () => {
+//   try {
+//     const response = await fetch("https://api.postalpincode.in/pincode/531055");
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// fetxhdata();
 
-res.forEach((i) => i.speak());
+fetch("https://api.postalpincode.in/pincode/531055")
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));

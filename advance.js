@@ -356,10 +356,10 @@
 // const res = new Bank("gangadhar", "SBI");
 // console.log(res);
 // console.log(res.getDetails());
-// console.log(res.bank);
+// console.log(res.bank); // undefined because bank is private property.
 // Only the methods inside the class can access private properties.
 
-//  Polymorphism ==> Polymorphism means using the same method name but having different behaviors for different objects. 
+//  Polymorphism ==> Polymorphism means using the same method name but having different behaviors for different objects.
 // class Animal {
 //   constructor(colour) {
 //     this.colour = colour;
@@ -434,7 +434,7 @@
 //     this.balance -= amount;
 //   }
 // }
-// const user10 = new User("anil", "axis", 1000);  
+// const user10 = new User("anil", "axis", 1000);
 // const user11 = new User("induja", "icici", 3000);
 // console.log(user10);
 // user11.withdraw(500);
@@ -565,7 +565,7 @@
  * 2. fullfilled state.
  * 3. rejected state.
  */
-// Promise takes callback function. callback has 2 argumets 1. resolve 2. reject
+// Promise takes callback function. callback has 2 arguments 1. resolve 2. reject
 
 // const p1 = new Promise((resolve, reject) => {
 //   let cond = true;
@@ -671,7 +671,7 @@
 // every .then returns new promise with data, that function is returning.
 
 // in 1st .then it is printing data as "p1 success" and that promise is returning "gangadhar".
-// so that returned value we get in 2nd .then, as new returned data i.vent is "gangadhar".
+// so that returned value we get in 2nd .then, as new returned data i.e is "gangadhar".
 // in 2nd .then, we are returning nothing, so we get undefined in 3rd then.
 
 // p1.catch(function rejectFn(err) {
@@ -765,6 +765,7 @@
 // error handling in promise chaining, if one promise is rejected, then remaining promises will not execute further.
 
 //      @@@ PROMISE COMBINATIONS.
+// PROMISE COMBINATIONS ==> methods used to handle multiple promises together.
 // PROMISE COMBINATIONS are functions, that takes array of promises and gives me a single promise.
 
 // true && true && false
@@ -776,7 +777,7 @@
 // true ==> fulfilled promise.
 // false ==> rejected promise.
 
-// @@@ Promise.all() ==> always looking for false i.vent rejected promise.
+// @@@ Promise.all() ==> always looking for false i.e rejected promise.
 
 // function promiseGen(condition, delay, resData, rejError) {
 //   return new Promise((res, rej) => {
@@ -840,7 +841,7 @@
 //     setTimeout(() => {
 //       if (cond) {
 //         res(resData);
-//       }
+//       } 
 //       rej(rejError);
 //     }, delay);
 //   });
@@ -880,14 +881,26 @@
 // promise.allSettled is only combination, which does't depend on time.
 // promise.allSettled gives only fulfilled promise only.
 
-//           #### ASYNC
+//           #### ASYNC and AWAIT
+// async and await are used to work with asynchronous code, making it easier to read and write compared to traditional Promises or callback-based approaches. 
 // async ==> keyword in js engine tells function that it may contain async code.
+/**
+ * async function always returns a Promise.  
+ * If function returns a value, it is wrapped in a resolved Promise. 
+ * If it throws an error, it is wrapped in a rejected Promise.
+ */
+
+/**
+ * await keyword is used to pause the execution of an async function until a Promise is resolved or rejected.
+ * The function pauses at await and waits for the Promise to settle (either resolve or reject) before continuing execution.
+ */
 
 // async function test() {
 //   return "gangadhar";
 // }
 // const res = test();
 // console.log(res);
+ 
 // JS engine by default convert 'async' function output into 'promise'.
 // async is similar to .then and .catch
 // along with 'async' we should use 'await' keyword.
@@ -963,6 +976,11 @@
 
 //         #### FETCH
 // Fetch is function which takes url and gives us a promise.
+// fetch API is a modern way to make HTTP requests and interact with resources such as APIs.
+
+// fetch(url, options)
+// url: The URL of the resource you want to fetch.
+// options (optional): An object to configure the request, such as method, headers, body, etc.
 
 // const productDiv = document.getElementById("products");
 
