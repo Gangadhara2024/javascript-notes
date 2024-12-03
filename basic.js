@@ -642,8 +642,6 @@
 
 //                #### THIS KEYWORD
 /**
- * 
-The this keyword in JavaScript is a context-specific reference that points to the object it is currently bound to.
  * This keyword in global points to global object.
  * In browsers the global object is Window.
  */
@@ -663,8 +661,6 @@ The this keyword in JavaScript is a context-specific reference that points to th
 // window.aaaa();
 // this.aaaa();
 // calling function aaaa() is same in all 3 aspects.
-
-// when This keyword is used inside function ==> This keyword points to object who called that function.
 
 // function callme() {
 //   console.log(this);
@@ -705,43 +701,87 @@ The this keyword in JavaScript is a context-specific reference that points to th
 // this is treated as variable inside arrow functions. so we get window object as output.
 // meaning of this keyword is nothing inside arrow functions.
 
-// Object Methods:
-// When a method is called on an object, this refers to the object the method is called on.
+// STRICT ==> means, which have strict rules helps you write more secure, reliable, and optimized code.
+// NON STRICT ==> default mode of JAVASCRIPT browser.
 
-// const person = {
-//   name: "Alice",
-//   greet() {
-//     console.log(this.name);
+// THIS keyword in functions behaves differently in 'STRICT' mode and 'NON STRICT' mode.
+// In strict mode ==> this is undefined.
+// In non-strict mode ==> this is window object.
+// This keyword value depends on how function is called.
+
+// THIS keyword inside function:
+// "use strict";
+// function add() {
+//   console.log(this);
+// }
+// add();
+// window.add();
+// for add() ==> value of THIS keyword is 'UNDEFINED'.
+// for window.add() ==> > value of THIS keyword is WINDOW Object.
+
+// THIS keyword in Object Methods: ==> here method means function inside Object.
+// When a method is called on an object, THIS refers to the object we called.
+
+// const obj = {
+//   name: "hello",
+//   city: "chennai",
+//   x: function () {
+//     console.log(this.name,this.city);
 //   },
 // };
-// person.greet();
-// output: "alice"
+// obj.x();
+// here THIS inside object method(function x()) is obj.
 
 // Arrow Functions:
-// Arrow functions do not bind their own this.
+// inside arrow functions THIS is present in (enclosed lexical context).
+// (enclosed lexical context) ==> means inside function braces.
 
-// const person = {
-//     name: 'Alice',
-//     greet: () => {
-//         console.log(this.name);
-//     }
+// const obj = {
+//     name: "hello",
+//     city: "chennai",
+//     print: () => {
+//       console.log(this);
+//     },
+//   };
+//   obj.print();
+// here THIS is present in Global space. means like console.log(this)
+
+// THIS inside nested arrow functions.
+// const obj = {
+//   name: "hello",
+//   city: "chennai",
+//   print: function () {
+//     const pr = () => {
+//       console.log(this);
+//     };
+//     pr();
+//   },
 // };
-// person.greet();
-// Logs undefined, as `this` refers to the outer scope (likely the global object)
+// obj.print();
+// here THIS points to obj. because lexical context means here print FN, THIS inside printfn is obj, so obj points to this.
 
 // Event Handlers:
 // document.querySelector('button').addEventListener('click', function () {
 //     console.log(this);
 // });
-// Logs the button element.
+// here THIS points to button element.
 
-// You can explicitly set the value of this using methods like call, apply, or bind.
-// function greet() {
-//     console.log(this.name);
-// }
-// const person = { name: 'Alice' };
-// greet.call(person);
-// Logs "Alice"
+// You can explicitly(forcefully) set the value of THIS keyword using methods like call, apply, or bind.
+// const obj = {
+//   name: "hello",
+//   city: "chennai",
+//   printName: function () {
+//     console.log(this.name, this.city);
+//   },
+// };
+
+// const obj2 = {
+//   name: "gangadhar",
+//   city: "visakhaptnam",
+// };
+// obj.printName();
+// obj.printName.call(obj2);
+// here this points to obj2.
 
 // Constructors and Classes:
 // When used in a constructor function or class, this refers to the newly created object instance.
